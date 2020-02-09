@@ -22,5 +22,5 @@ Gem::Specification.new do |spec|
   end
   spec.require_paths = ["lib", "lib/bitcount"]
 
-  spec.add_development_dependency('benchmark_driver', '~> 0.5.9')
+  spec.add_development_dependency('benchmark_driver')
 end
