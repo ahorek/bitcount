@@ -26,6 +26,7 @@ module Bitcount
       end
 
       def popcount(n)
+        return Bitcount::Pure.popcount(n) if defined?(JRUBY_VERSION) && n > max_value
         begin
           ext_popcount(n)
         rescue
@@ -35,7 +36,7 @@ module Bitcount
 
       def ntz(n, size = nil)
         size ||= layout_size
-        return Bitcount::Pure.ntz(n, size) if layout_size != size
+        return Bitcount::Pure.ntz(n, size) if layout_size != size || (defined?(JRUBY_VERSION) && n > max_value)
         begin
           ext_ntz(n)
         rescue
@@ -45,7 +46,7 @@ module Bitcount
 
       def nlz(n, size = nil)
         size ||= layout_size
-        return Bitcount::Pure.nlz(n, size) if layout_size != size
+        return Bitcount::Pure.nlz(n, size) if layout_size != size || (defined?(JRUBY_VERSION) && n > max_value)
         begin
           ext_nlz(n)
         rescue
@@ -54,6 +55,10 @@ module Bitcount
       end
 
       private
+
+      def max_value
+        (2 ** layout_size) - 1
+      end
 
       def layout_error
         raise RangeError, 'number is too large'

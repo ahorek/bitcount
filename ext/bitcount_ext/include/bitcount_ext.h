@@ -1,5 +1,6 @@
 #include <limits.h>
 #include <stdint.h>
+#include <stddef.h>
 
 #ifndef GCC_VERSION_SINCE
 # if defined(__GNUC__) && !defined(__INTEL_COMPILER) && !defined(__clang__)

@@ -45,6 +45,11 @@ RSpec.describe Bitcount do
       expect(Bitcount.popcount(655350000000000000000000000)).to eq(36)
     end
 
+    it 'max value' do
+      max = Bitcount::Native.send(:max_value)
+      expect(Bitcount::Native.popcount(max)).to eq(Bitcount::Pure.popcount(max))
+    end
+
     it 'errors' do
       expect { Bitcount.popcount(nil) }.to raise_error(TypeError)
       expect { Bitcount.popcount(2.5) }.to raise_error(TypeError)
