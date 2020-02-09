@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require "bitcount"
 
 class Integer
@@ -5,11 +7,11 @@ class Integer
     Bitcount.popcount(self)
   end
 
-  def ntz(size = Bitcount.layout_size)
+  def ntz(size = nil)
     Bitcount.ntz(self, size)
   end
 
-  def nlz(size = Bitcount.layout_size)
+  def nlz(size = nil)
     Bitcount.nlz(self, size)
   end
 end

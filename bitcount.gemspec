@@ -22,5 +22,8 @@ Gem::Specification.new do |spec|
   end
   spec.require_paths = ["lib", "lib/bitcount"]
 
-  spec.add_development_dependency('benchmark_driver')
+  spec.add_runtime_dependency 'ffi'
+  spec.add_development_dependency 'benchmark_driver'
+  spec.add_development_dependency "rake"
+  spec.add_development_dependency "rake-compiler"
 end

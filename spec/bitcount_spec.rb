@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe Bitcount do
   it "has a version number" do
     expect(Bitcount::VERSION).not_to be nil
@@ -69,7 +71,7 @@ RSpec.describe Bitcount do
     end
 
     it 'big' do
-      expect { Bitcount.nlz(655350000000000000000000000) }.to raise_error(ArgumentError)
+      expect { Bitcount.nlz(655350000000000000000000000) }.to raise_error(RangeError)
     end
 
     it 'map' do
@@ -106,7 +108,7 @@ RSpec.describe Bitcount do
     end
 
     it 'big' do
-      expect { Bitcount.ntz(655350000000000000000000000) }.to raise_error(ArgumentError)
+      expect { Bitcount.ntz(655350000000000000000000000) }.to raise_error(RangeError)
     end
 
     it 'layout' do

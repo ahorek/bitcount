@@ -1,49 +1,41 @@
+# frozen_string_literal: true
+
 require "bitcount/version"
+require "bitcount/pure"
+begin
+  require "bitcount/native"
+rescue LoadError
+  puts 'ext not loaded'
+end
 
 module Bitcount
   class << self
-    def layout_size
-      64
-    end
-
     def popcount(n)
       type_error unless n.is_a?(Integer)
       negative_error if n < 0
-      n.to_s(2).count("1")
+      implementation.popcount(n)
     end
     
-    def ntz(n, size = layout_size)
-      count = 0
+    def ntz(n, size = nil)
       type_error unless n.is_a?(Integer)
       negative_error if n < 0
-      bits = n.to_s(2)
-      layout_error if bits.size > size
-      bits.rjust(size, "0").reverse.each_char do |b|
-        (b == '0') ? count += 1 : break
-      end
-      count
+      implementation.ntz(n, size)
     end
     
-    def nlz(n, size = layout_size)
-      count = 0
+    def nlz(n, size = nil)
       type_error unless n.is_a?(Integer)
       negative_error if n < 0
-      bits = n.to_s(2)
-      layout_error if bits.size > size
-      bits.rjust(size, "0").each_char do |b|
-        (b == '0') ? count += 1 : break
-      end
-      count
+      implementation.nlz(n, size)
     end
     
     private
     
-    def type_error
-      raise TypeError, 'not a number'
+    def implementation
+      defined?(:"Bitcount::Native") ? Bitcount::Native : Bitcount::Pure
     end
     
-    def layout_error
-      raise ArgumentError, 'number is too large'
+    def type_error
+      raise TypeError, 'not a number'
     end
 
     def negative_error

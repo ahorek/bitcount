@@ -1,5 +1,8 @@
-prelude: require 'bitcount/integer'
+prelude: require 'bitcount'
 benchmark:
-  popcount: 122.popcount
-  nlz: 122.nlz
-  ntz: 122.ntz
+  native_popcount: Bitcount::Native.popcount(122)
+  native_nlz: Bitcount::Native.nlz(122)
+  native_ntz: Bitcount::Native.ntz(122)
+  ruby_popcount: Bitcount::Pure.popcount(122)
+  ruby_nlz: Bitcount::Pure.nlz(122)
+  ruby_ntz: Bitcount::Pure.ntz(122)

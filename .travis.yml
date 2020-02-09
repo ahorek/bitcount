@@ -1,20 +1,23 @@
 ---
 language: ruby
-#cache: bundler
+cache: bundler
 
-#before_install: gem install bundler -v 2.1.2
-
-script: rake spec
+script: bundle exec rake spec
 
 rvm:
   - 2.3
   - 2.7
-  - jruby
+  - jruby-9.2.9.0
   - truffleruby
+  - ruby-head
+  - jruby-head
   
 matrix:
   include:
     - name: benchmark
       rvm: 2.7
-      script: benchmark-driver benchmark/bitcount.yml
-
+      script: bundle exec benchmark-driver benchmark/bitcount.yml --rvm 2.7
+  allow_failures:
+    - rvm: ruby-head
+    - rvm: jruby-head
+    - rvm: truffleruby
