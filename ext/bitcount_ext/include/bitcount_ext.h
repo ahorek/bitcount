@@ -21,7 +21,7 @@
   #endif
 #endif
 
-unsigned int ext_layout();
-unsigned int ext_popcount(uintptr_t x);
-unsigned int ext_nlz(uintptr_t x);
-unsigned int ext_ntz(uintptr_t x);
+size_t ext_layout();
+size_t ext_popcount(size_t x);
+size_t ext_nlz(size_t x);
+size_t ext_ntz(size_t x);

@@ -5,7 +5,7 @@ require "bitcount/pure"
 begin
   require "bitcount/native"
 rescue LoadError
-  puts 'ext not loaded'
+  puts 'bitcount_ext not loaded'
 end
 
 module Bitcount

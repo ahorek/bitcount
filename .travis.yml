@@ -16,7 +16,9 @@ matrix:
   include:
     - name: benchmark
       rvm: 2.7
-      script: bundle exec benchmark-driver benchmark/bitcount.yml --rvm 2.7
+      script:
+        bundle exec rake compile:bitcount_ext
+        bundle exec benchmark-driver benchmark/bitcount.yml
   allow_failures:
     - rvm: ruby-head
     - rvm: jruby-head

@@ -1,17 +1,17 @@
 #include "bitcount_ext.h"
 #include "helpers.c"
 
-unsigned int ext_layout()
+size_t ext_layout()
 {
-    return sizeof(uintptr_t) * CHAR_BIT;
+    return sizeof(size_t) * CHAR_BIT;
 }
 
-unsigned int ext_popcount(uintptr_t x)
+size_t ext_popcount(size_t x)
 {
-    if (sizeof(uintptr_t) * CHAR_BIT == 64) {
+    if (sizeof(size_t) * CHAR_BIT == 64) {
         return ext_popcount64((uint64_t)x);
     }
-    else if (sizeof(uintptr_t) * CHAR_BIT == 32) {
+    else if (sizeof(size_t) * CHAR_BIT == 32) {
         return ext_popcount32((uint32_t)x);
     }
     else {
@@ -19,12 +19,12 @@ unsigned int ext_popcount(uintptr_t x)
     }
 }
 
-unsigned int ext_nlz(uintptr_t x)
+size_t ext_nlz(size_t x)
 {
-    if (sizeof(uintptr_t) * CHAR_BIT == 32) {
+    if (sizeof(size_t) * CHAR_BIT == 32) {
         return nlz_int32((uint32_t)x);
     }
-    else if (sizeof(uintptr_t) * CHAR_BIT == 64) {
+    else if (sizeof(size_t) * CHAR_BIT == 64) {
         return nlz_int64((uint64_t)x);
     }
     else {
@@ -32,12 +32,12 @@ unsigned int ext_nlz(uintptr_t x)
     }
 }
 
-unsigned int ext_ntz(uintptr_t x)
+size_t ext_ntz(size_t x)
 {
-    if (sizeof(uintptr_t) * CHAR_BIT == 64) {
+    if (sizeof(size_t) * CHAR_BIT == 64) {
         return ntz_int64((uint64_t)x);
     }
-    else if (sizeof(uintptr_t) * CHAR_BIT == 32) {
+    else if (sizeof(size_t) * CHAR_BIT == 32) {
         return ntz_int32((uint32_t)x);
     }
     else {

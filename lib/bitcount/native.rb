@@ -14,10 +14,10 @@ module Bitcount
         ffi_lib File.expand_path("bitcount_ext.#{dl_ext}", "#{__dir__}/../../ext")
       end
 
-      attach_function :ext_layout, [], :uint
-      attach_function :ext_popcount, [:uintptr_t], :uint
-      attach_function :ext_nlz, [:uintptr_t], :uint
-      attach_function :ext_ntz, [:uintptr_t], :uint
+      attach_function :ext_layout, [], :size_t
+      attach_function :ext_popcount, [:size_t], :size_t
+      attach_function :ext_nlz, [:size_t], :size_t
+      attach_function :ext_ntz, [:size_t], :size_t
 
       def layout_size
         ext_layout

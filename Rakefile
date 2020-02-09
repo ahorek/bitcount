@@ -17,8 +17,8 @@ Rake::ExtensionTask.new('bitcount_ext', gem_spec) do |ext|
   ext.lib_dir = 'lib/bitcount_ext'
 end
 
-CLEAN.include 'lib/bitcount/bitcount_ext.{so,bundle,dll}',
-              'ext/*.{o,so,bundle,dll}', 'ext/Makefile'
+CLEAN.include 'lib/bitcount_ext/bitcount_ext.{so,bundle,dll}',
+              'ext/*.{o,so,bundle,dll}', 'ext/Makefile', 'tmp'
 
 RSpec::Core::RakeTask.new(:spec)
 task test: 'compile:bitcount_ext' do
