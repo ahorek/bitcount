@@ -9,7 +9,7 @@ module Bitcount
 
       dl_ext = RbConfig::MAKEFILE_CONFIG['DLEXT']
       begin
-        ffi_lib File.expand_path("bitcount_ext.#{dl_ext}", __dir__)
+        ffi_lib File.expand_path("../bitcount_ext/bitcount_ext.#{dl_ext}", __dir__)
       rescue LoadError
         ffi_lib File.expand_path("bitcount_ext.#{dl_ext}", "#{__dir__}/../../ext")
       end

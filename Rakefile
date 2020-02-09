@@ -4,9 +4,6 @@ require "bundler/gem_tasks"
 require "rspec/core/rake_task"
 require 'rake/extensiontask'
 
-RSpec::Core::RakeTask.new(:spec)
-task default: :spec
-
 gem_spec = Gem::Specification.load("bitcount.gemspec")
 
 module FixRequiredRubyVersion
@@ -22,3 +19,9 @@ end
 
 CLEAN.include 'lib/bitcount/bitcount_ext.{so,bundle,dll}',
               'ext/*.{o,so,bundle,dll}', 'ext/Makefile'
+
+RSpec::Core::RakeTask.new(:spec)
+task test: 'compile:bitcount_ext' do
+  Rake::Task['spec'].invoke
+end
+task default: :test
