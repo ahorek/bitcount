@@ -22,7 +22,7 @@ $INCFLAGS << " -I$(srcdir)/bitcount_ext/include"
 $VPATH << "$(srcdir)/bitcount_ext/src"
 Dir.chdir(__dir__) do
   $VPATH += Dir['bitcount_ext/src/*/'].map { |p| "$(srcdir)/#{p}" }
-  $srcs = Dir['bitcount_ext/src/**/*.{c,cpp}']
+  $srcs = Dir['bitcount_ext/src/bitcount_ext.c']
 end
 
 $LIBRUBYARG = nil
