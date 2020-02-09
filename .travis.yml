@@ -1,0 +1,20 @@
+---
+language: ruby
+#cache: bundler
+
+#before_install: gem install bundler -v 2.1.2
+
+script: rake spec
+
+rvm:
+  - 2.3
+  - 2.7
+  - jruby
+  - truffleruby
+  
+matrix:
+  include:
+    - name: benchmark
+      rvm: 2.7
+      script: benchmark-driver benchmark/bitcount.yml
+

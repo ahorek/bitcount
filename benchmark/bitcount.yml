@@ -1,0 +1,5 @@
+prelude: require 'bitcount/integer'
+benchmark:
+  popcount: 122.popcount
+  nlz: 122.nlz
+  ntz: 122.ntz
